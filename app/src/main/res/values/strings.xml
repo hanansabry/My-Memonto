@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">My-Memonto</string>
+
+    <plurals name="numberOfNotes">
+        <item quantity="one">%d note</item>
+        <item quantity="other">%d notes</item>
+    </plurals>
 </resources>
