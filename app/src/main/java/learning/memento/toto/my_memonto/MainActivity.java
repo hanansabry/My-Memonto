@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.addItemDecoration(new MyDividerItemDecoration(this, LinearLayoutManager.VERTICAL, 16));
 //        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
 
+        initDialog();
+
         //add delete functionality to the recyclerview by swipe it left
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SimpleCallbackTouchHelper(MainActivity.this, 0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
             @Override
@@ -60,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
                     mCategoriesAdapter.notifyItemRemoved(position);
                     mCategoriesAdapter.notifyItemRangeChanged(position, categoryList.size());
                 } else {
-//                    Toast.makeText(MainActivity.this, "Swipped Right", Toast.LENGTH_SHORT).show();
                     removeView();
                     edit_position = position;
                     alertDialog.setTitle("Edit Country");
@@ -128,11 +129,26 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.setPositiveButton("Save", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                addNewCategory(addCategoryEditText.getText().toString());
-                dialog.dismiss();
+                if(add){
+                    add =false;
+                    addNewCategory(addCategoryEditText.getText().toString());
+                    dialog.dismiss();
+                } else {
+                    Category editedCat = categoryList.get(edit_position);
+                    editedCat.setCategoryName(addCategoryEditText.getText().toString());
+                    mCategoriesAdapter.notifyDataSetChanged();
+                    dialog.dismiss();
+                }
             }
         });
-        addCategoryEditText = (EditText) view.findViewById(R.id.add_category_et);
+        alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialogInterface) {
+                Toast.makeText(MainActivity.this, "Dialog is cancelled", Toast.LENGTH_SHORT).show();
+                mCategoriesAdapter.notifyDataSetChanged();
+            }
+        });
+        addCategoryEditText = view.findViewById(R.id.add_category_et);
     }
 
     private void removeView(){
