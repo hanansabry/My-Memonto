@@ -18,6 +18,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import Utilites.CustomRecyclerView;
 import Utilites.MyDividerItemDecoration;
 import Utilites.RecyclerTouchListener;
 import Utilites.SimpleCallbackTouchHelper;
@@ -25,7 +26,7 @@ import data.Category;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
+    private CustomRecyclerView recyclerView;
     private CategoriesAdapter mCategoriesAdapter;
     private List<Category> categoryList = new ArrayList<>();
     private FloatingActionButton fab;
@@ -40,8 +41,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recyclerView = (RecyclerView) findViewById(R.id.categories_rv);
+        recyclerView = (CustomRecyclerView) findViewById(R.id.categories_rv);
         fab = (FloatingActionButton) findViewById(R.id.fab);
+
+        View emptyView = findViewById(R.id.empty_recyclerview);
+        recyclerView.setEmptyView(emptyView);
 
         mCategoriesAdapter = new CategoriesAdapter(this, categoryList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
