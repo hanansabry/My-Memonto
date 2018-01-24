@@ -10,6 +10,9 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -68,12 +71,10 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     removeView();
                     edit_position = position;
-                    alertDialog.setTitle("Edit Country");
+                    alertDialog.setTitle("Edit Category");
                     addCategoryEditText.setText(categoryList.get(position).getCategoryName());
                     alertDialog.show();
                 }
-
-
             }
         });
         itemTouchHelper.attachToRecyclerView(recyclerView);
@@ -90,15 +91,13 @@ public class MainActivity extends AppCompatActivity {
             }
         }));
 
-//        addCategoryItems();
-
         //add onclicklistener to the fab button
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 removeView();
                 add = true;
-                alertDialog.setTitle("Add Country");
+                alertDialog.setTitle("Add Category");
                 addCategoryEditText.setText("");
                 alertDialog.show();
             }
@@ -159,5 +158,19 @@ public class MainActivity extends AppCompatActivity {
         if(view.getParent()!=null) {
             ((ViewGroup) view.getParent()).removeView(view);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.settings_action){
+            Toast.makeText(this, "Setting action selected", Toast.LENGTH_SHORT).show();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
