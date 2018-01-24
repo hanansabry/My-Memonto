@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -38,7 +37,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
     @Override
     public void onBindViewHolder(CategoryViewHolder holder, int position) {
         Category category = categoryList.get(position);
-        int notesNum = category.getCategoryNums();
+        int notesNum = category.getCategoryNotesNum();
         holder.categoryName.setText(category.getCategoryName());
         holder.categoryNotesNum.setText(context.getResources().getQuantityString(R.plurals.numberOfNotes, notesNum, notesNum));
         holder.categoryDate.setText(category.getCategoryDate());

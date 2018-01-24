@@ -1,6 +1,7 @@
 package learning.memento.toto.my_memonto;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -83,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view, int position) {
                 Toast.makeText(MainActivity.this, "Single Click on position " + position, Toast.LENGTH_SHORT).show();
+                Intent notesIntent = new Intent(MainActivity.this, NotesActivity.class);
+                startActivity(notesIntent);
             }
 
             @Override
@@ -105,9 +108,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addCategoryItems() {
-        Category c1 = new Category("new category 1", 2, "22 Dec, 2018");
-        Category c2 = new Category("new category 2", 1, "02 Jan, 2018");
-        Category c3 = new Category("new category 3", 0, "15 Mar, 2018");
+        Category c1 = new Category("new category 1", 0);
+        Category c2 = new Category("new category 2", 0);
+        Category c3 = new Category("new category 3", 0);
 
         categoryList.add(c1);
         categoryList.add(c2);
@@ -116,9 +119,8 @@ public class MainActivity extends AppCompatActivity {
         mCategoriesAdapter.notifyDataSetChanged();
     }
 
-    //action of the Floating Action Button
     public void addNewCategory(String categoryName) {
-        Category cat = new Category(categoryName, (int) (Math.random() * 20), "23, May 2018");
+        Category cat = new Category(categoryName, 0);
         categoryList.add(0, cat);
         mCategoriesAdapter.notifyItemInserted(0);
         recyclerView.smoothScrollToPosition(0);
