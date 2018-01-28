@@ -17,22 +17,23 @@ import data.Note;
  * Created by Nono on 1/24/2018.
  */
 
-public class NotesAdapter extends RecyclerView.Adapter {
+public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHolder> {
     private List<Note> noteList;
     private Context context;
 
     public NotesAdapter(Context context, List<Note> noteList){
         this.context = context;
+        this.noteList = noteList;
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public NoteViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.note_item_layout, parent, false);
         return new NoteViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(NoteViewHolder holder, int position) {
 //        Category category = categoryList.get(position);
 //        int notesNum = category.getCategoryNotesNum();
 //        holder.categoryName.setText(category.getCategoryName());
@@ -40,7 +41,8 @@ public class NotesAdapter extends RecyclerView.Adapter {
 //        holder.categoryDate.setText(category.getCategoryDate());
 
         Note note = noteList.get(position);
-
+        holder.noteTitleTV.setText(note.getNoteTitle());
+        holder.noteDateTV.setText(note.getNoteDate());
     }
 
     @Override
