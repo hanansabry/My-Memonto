@@ -3,6 +3,8 @@
     <string name="no_categories_found">No categories found!</string>
     <string name="add_categores_text">Create a new category to start taking notes</string>
     <string name="settings_menu_action">Settings</string>
+    <string name="fab_text_note_label">Add text note</string>
+    <string name="fab_draw_note_label">Add drawing note</string>
 
     <plurals name="numberOfNotes">
         <item quantity="one">%d note</item>

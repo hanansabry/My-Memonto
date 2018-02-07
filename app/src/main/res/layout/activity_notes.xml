@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -15,16 +16,36 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/notes_fab"
+        <com.github.clans.fab.FloatingActionMenu
+            android:id="@+id/notes_fab_menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
-            android:clickable="true"
-            android:src="@drawable/ic_category_add_white_24dp"
-            app:backgroundTint="@color/primaryDarkColor"
             app:fabSize="normal"
-            app:rippleColor="@color/secondaryDarkColor" />
+            fab:menu_colorNormal="@color/primaryColor"
+            fab:menu_colorPressed="@color/secondaryDarkColor">
+
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/fab_notes_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic__text_white_24dp"
+                fab:fab_label="@string/fab_text_note_label"
+                fab:fab_size="mini"
+                fab:fab_colorNormal="@color/primaryColor"
+                fab:fab_colorPressed="@color/secondaryDarkColor"/>
+
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/fab_notes_draw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/pencil"
+                fab:fab_label="@string/fab_draw_note_label"
+                fab:fab_size="mini"
+                fab:fab_colorNormal="@color/primaryColor"
+                fab:fab_colorPressed="@color/secondaryDarkColor"/>
+        </com.github.clans.fab.FloatingActionMenu>
+
     </FrameLayout>
 </LinearLayout>
